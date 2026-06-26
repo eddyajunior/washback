@@ -39,4 +39,3 @@ Detected added column 'customers.nickname'
 Por fim, aplicamos:
 
 ```alembic upgrade head```
-
