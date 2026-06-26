@@ -1,5 +1,8 @@
 from app.infrastructure.database.models.company import Company
 
+from sqlalchemy.orm import Session
+
+
 class CompanyRepository:
 
     def __init__(self, db: Session):
