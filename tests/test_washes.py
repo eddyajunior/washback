@@ -17,13 +17,14 @@ def test_list_washes_empty_page(
     assert response.status_code == 200
 
 def test_create_wash_without_token(
-        client
+        client,
+        customer_created
 ):
     
     response = client.post(
         "/washes/",
         json={
-            "customer_id": 1,
+            "customer_id": customer_created["id"],
             "wash_type": "Simples",
             "price": 50
         }
@@ -93,6 +94,8 @@ def test_get_wash_by_id_not_found(
 ):
     
     wash_id = wash_created["id"] + 10000
+
+    print(wash_id)
     
     response = client.get(
         f"/washes/{wash_id}",
@@ -141,11 +144,12 @@ def test_company_cannot_access_other_company_wash(
 
 def test_get_wash_by_id_success(
         client,
-        auth_headers
+        auth_headers,
+        wash_created
 ):
     
     response = client.get(
-        "/washes/1",
+        f"/washes/{wash_created["id"]}",
         headers = auth_headers
     )
 
@@ -153,16 +157,17 @@ def test_get_wash_by_id_success(
 
 def test_create_wash_success(
         client,
-        auth_headers
+        auth_headers,
+        customer_created
 ):
     
     response = client.post(
         "/washes/",
         headers = auth_headers,
         json = {   
-            "customer_id": 1,   
-            "wash_type": "Polimento",   
-            "price": 151.45,   
+            "customer_id": customer_created["id"],   
+            "wash_type": "Simples",   
+            "price": 50,   
             "notes": "" 
         }
     )

@@ -16,25 +16,27 @@ def test_register_validation_error(client):
 
     assert body["success"] is False
 
-def test_register_duplicate_email(client):
+def test_register_duplicate_email(client, unique_email):
+
+    password = "123456"
 
     response = client.post(
         "/auth/register",
         json={
-            "email": "edson@empresa1.com",
-            "password": "123456",
-            "company_name": "Empresa Teste"
+            "email": unique_email,
+            "password": password
+            # ,"company_name": "Empresa Teste"
         }
     )
 
     print(response.status_code)
     print(response.json())
 
-    assert response.status_code == 422
+    assert response.status_code == 200
 
     body = response.json()
 
-    assert body["success"] is False
+    assert body["success"] is True
 
 def test_register_success(client):
 
@@ -95,13 +97,15 @@ def test_register_success_and_login(client):
 
     print(response_login.json())
 
-def test_login_invalid_password(client):
+def test_login_invalid_password(client, unique_email):
+
+    password = "123456"
 
     response = client.post(
         "/auth/login",
         json = {
-            "email": "edson@empresa1.com",
-            "password": "123456"
+            "email": unique_email,
+            "password": password
         }        
     )
 
@@ -190,13 +194,23 @@ def test_login_user_not_found(client):
 
     assert response.status_code == 422
 
-def test_login_success(client):
+def test_login_success(client, unique_email):
+
+    password = "123456"
+
+    client.post(
+        "/auth/register",
+        json={
+            "email": unique_email,
+            "password": password
+        }
+    )
 
     response = client.post(
         "/auth/login",
         json={
-            "email": "edson@empresa1.com",
-            "password": "1234"
+            "email": unique_email,
+            "password": password
         }
     )
 

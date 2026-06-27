@@ -84,7 +84,7 @@ def test_access_without_token(client):
 def test_customer_fixture(customer_created):
 
     assert customer_created["id"] > 0
-    assert customer_created["name"] == "Cliente Teste Pytest Fixture"
+    assert customer_created["name"] == "Cliente Fixture"
 
 def test_list_customers_only_from_current_company(
     client,

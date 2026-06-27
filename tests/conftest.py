@@ -41,21 +41,23 @@ def auth_headers_company(
 @pytest.fixture
 def wash_created(
     client,
-    auth_headers
+    auth_headers,
+    customer_created
 ):
-    
     payload = {
-        "customer_id": 1, #f"{uuid.uuid4().hex[:1]}",   
-        "wash_type": "Simples",   
-        "price": 50,   
-        "notes": "Explaned note" 
+        "customer_id": customer_created["id"],
+        "wash_type": "Simples",
+        "price": 50
     }
-    
+
     response = client.post(
-        "/washes",
-        headers = auth_headers,
-        json = payload
+        "/washes/",
+        json=payload,
+        headers=auth_headers
     )
+
+    print("WASH CREATED STATUS:", response.status_code)
+    print("WASH CREATED BODY:", response.json())
 
     assert response.status_code == 200
 
@@ -80,41 +82,86 @@ def auth_headers_company2(client):
     }
 
 @pytest.fixture
-def customer_created(client, auth_headers):
-
-    payload = {   
-        "name": "Cliente Teste Pytest Fixture",   
-        "phone": f"119{uuid.uuid4().hex[:8]}",   
-        "car_plate": f"PYT{uuid.uuid4().hex[:4].upper()}",   
-        "car_model": "Gol" 
+def customer_created(
+    client,
+    auth_headers
+):
+    payload = {
+        "name": "Cliente Fixture",
+        "phone": "11999999999",
+        "car_plate": f"TST{uuid.uuid4().hex[:4].upper()}",
+        "car_model": "Gol"
     }
 
     response = client.post(
-        "/customers/", 
-        json=payload, 
+        "/customers/",
+        json=payload,
         headers=auth_headers
-        )
-    
+    )
+
+    print("CUSTOMER CREATED STATUS:", response.status_code)
+    print("CUSTOMER CREATED BODY:", response.json())
+
     assert response.status_code == 200
 
     return response.json()["data"]
+
+# @pytest.fixture
+# def client():
+#     return TestClient(app)
+
+# @pytest.fixture
+# def auth_headers(client):
+
+
+#     login_response = client.post(
+#         "/auth/login",
+#         json={
+#         	"email": "edson@empresa1.com",
+#     	"password": "1234"
+#         }
+#     )
+
+#     token = login_response.json().get("access_token")
+
+#     return {"Authorization": f"Bearer {token}"}
 
 @pytest.fixture
 def client():
     return TestClient(app)
 
-@pytest.fixture
-def auth_headers(client):
 
+@pytest.fixture
+def unique_email():
+    return f"teste_{uuid.uuid4().hex[:8]}@example.com"
+
+
+@pytest.fixture
+def auth_headers(client, unique_email):
+    password = "123456"
+
+    register_response = client.post(
+        "/auth/register",
+        json={
+            "email": unique_email,
+            "password": password
+        }
+    )
+
+    assert register_response.status_code in [200, 201]
 
     login_response = client.post(
         "/auth/login",
         json={
-        	"email": "edson@empresa1.com",
-    	"password": "1234"
+            "email": unique_email,
+            "password": password
         }
     )
 
-    token = login_response.json().get("access_token")
+    assert login_response.status_code == 200
 
-    return {"Authorization": f"Bearer {token}"}
+    token = login_response.json()["access_token"]
+
+    return {
+        "Authorization": f"Bearer {token}"
+    }

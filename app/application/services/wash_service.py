@@ -23,7 +23,7 @@ class WashService:
         return self.customer_repository.get_by_id(company_id, customer_id)
 
     def create_wash(self, wash, company_id: int):
-        customer = self.customer_repository.get_by_id(wash.customer_id, company_id)
+        customer = self.customer_repository.get_by_id(company_id, wash.customer_id)
 
         if not customer:
             raise BusinessException(
