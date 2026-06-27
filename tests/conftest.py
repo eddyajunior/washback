@@ -66,14 +66,28 @@ def wash_created(
 
 @pytest.fixture
 def auth_headers_company2(client):
+    password = "123456"
+    email = f"empresa2_{uuid.uuid4().hex[:8]}@example.com"
+
+    register = client.post(
+        "/auth/register",
+        json={
+            "email": email,
+            "password": password
+        }
+    )
+
+    assert register.status_code in [200, 201], register.json()
 
     login = client.post(
         "/auth/login",
         json={
-            "email": "user4@example.com",
-            "password": "1234"
+            "email": email,
+            "password": password
         }
     )
+
+    assert login.status_code == 200, login.json()
 
     token = login.json()["access_token"]
 
