@@ -3,7 +3,6 @@ from fastapi import (
     Depends
 )
 
-from sqlalchemy import func
 
 from app.core.dependencies import get_dashboard_service
 from app.core.responses import success_response

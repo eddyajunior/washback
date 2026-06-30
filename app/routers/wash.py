@@ -16,7 +16,6 @@ from app.schemas.wash import (
 from app.schemas.common import DefaultResponse
 
 from app.core.security import get_current_user
-from app.infrastructure.database.database import get_db
 
 router = APIRouter(
     prefix="/washes",

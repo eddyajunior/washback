@@ -1,7 +1,6 @@
 import random
 
 from faker import Faker
-from random import choice, randint, uniform
 from datetime import datetime, timedelta
 
 from app.infrastructure.database.database import SessionLocal
@@ -90,7 +89,7 @@ def create_washes(customers):
 def create_campaigns(customers, db):
     print("Criando campanhas...")
 
-    campaigns = []
+    # campaigns = []
 
     for customer in customers:
         last_wash_days = random.randint(5, 40)

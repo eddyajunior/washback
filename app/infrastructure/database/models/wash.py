@@ -12,7 +12,6 @@ from sqlalchemy.orm import relationship
 
 from app.infrastructure.database.database import Base
 
-from datetime import datetime
 
 class Wash(Base):
     __tablename__ = "washes"

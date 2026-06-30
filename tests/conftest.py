@@ -1,12 +1,9 @@
-from urllib import response
 
 from fastapi.testclient import TestClient
 from app.main import app
 
 import uuid
 import pytest 
-import random 
-import string 
 
 @pytest.fixture
 def auth_headers_company(

@@ -118,25 +118,17 @@ def test_login_invalid_password(client, unique_email):
 
     assert body["success"] is False
 
+# def test_login_invalid_credentials(client):
 
-def test_login_user_not_found(client):
+#     response = client.post(
+#         "/auth/login",
+#         json={
+#             "email": "edson@empresa1.com",
+#             "password": "12345"
+#         }
+#     )
 
-    response = client.post(
-        "/auth/login",
-        json = {
-            "email": "naoexiste@email.com",
-            "password": "123456"
-        }        
-    )
-
-    print(response.status_code)
-    print(response.json())
-
-    assert response.status_code == 401
-
-    body = response.json()
-    assert body["success"] is False
-
+#     assert response.status_code == 422
 
 def test_login_invalid_credentials(client):
 
@@ -151,7 +143,7 @@ def test_login_invalid_credentials(client):
     print(response.status_code)
     print(response.json())
 
-    assert response.status_code == 401
+    assert response.status_code == 422
 
     body = response.json()
     assert body["success"] is False
@@ -167,32 +159,38 @@ def test_login_validation_error(client):
 
     body = response.json()
 
-    assert body["success"] == False
+    assert body["success"] is False
     assert body["message"] == "Dados de entrada inválidos"
 
-def test_login_invalid_credentials(client):
+# def test_login_user_not_found(client):
 
-    response = client.post(
-        "/auth/login",
-        json={
-            "email": "edson@empresa1.com",
-            "password": "12345"
-        }
-    )
+#     response = client.post(
+#         "/auth/login",
+#         json={
+#             "email": "nonexistent@empresa1.com",
+#             "password": "1234"
+#         }
+#     )
 
-    assert response.status_code == 422
+#     assert response.status_code == 422
 
 def test_login_user_not_found(client):
 
     response = client.post(
         "/auth/login",
-        json={
-            "email": "nonexistent@empresa1.com",
-            "password": "1234"
-        }
+        json = {
+            "email": "naoexiste@email.com",
+            "password": "123456"
+        }        
     )
 
+    print(response.status_code)
+    print(response.json())
+
     assert response.status_code == 422
+
+    body = response.json()
+    assert body["success"] is False
 
 def test_login_success(client, unique_email):
 

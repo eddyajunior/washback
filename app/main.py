@@ -1,7 +1,13 @@
 from fastapi import FastAPI
 
 from app.infrastructure.database.database import engine, Base
-from app.infrastructure.database.models import *
+
+# from app.infrastructure.database.models import *
+from app.infrastructure.database.models.user import User as User
+from app.infrastructure.database.models.company import Company as Company
+from app.infrastructure.database.models.customer import Customer as Customer
+from app.infrastructure.database.models.wash import Wash as Wash
+from app.infrastructure.database.models.campaign import Campaign as Campaign
 
 from app.routers.customer import router as customer_router
 from app.routers.auth import router as auth_router
@@ -29,8 +35,6 @@ from app.core.exceptions import (
     BusinessException,
     ValidationException
 )
-
-from fastapi.exceptions import RequestValidationError
 
 Base.metadata.create_all(bind=engine)
 
@@ -82,8 +86,6 @@ app.add_exception_handler(
     Exception,
     generic_exception_handler
 )
-
-from app.infrastructure.database.models import *
 
 
 @app.get("/")

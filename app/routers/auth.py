@@ -20,7 +20,8 @@ def register(
     user: LoginRequest,
     service: AuthService = Depends(get_auth_service)
 ):
-    added_user = service.register_user(user)
+
+    service.register_user(user)
 
     return success_response(
         "Usuário criado com sucesso"

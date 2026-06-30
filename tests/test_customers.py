@@ -42,19 +42,19 @@ def test_access_with_empty_token(client):
 
     assert response.status_code == 401
 
-def test_access_with_invalid_token(client):
+# def test_access_with_invalid_token(client):
 
-    response = client.get(
-        "/customers/1",
-        headers={
-            "Authorization": "Bearer token_invalido"
-        }
-    )
+#     response = client.get(
+#         "/customers/1",
+#         headers={
+#             "Authorization": "Bearer token_invalido"
+#         }
+#     )
 
-    print(response.status_code)
-    print(response.json())
+#     print(response.status_code)
+#     print(response.json())
 
-    assert response.status_code == 401
+#     assert response.status_code == 401
 
 def test_access_with_invalid_token(client):
 

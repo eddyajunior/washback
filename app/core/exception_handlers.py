@@ -24,6 +24,19 @@ async def request_validation_exception_handler(
         }
     )
 
+# async def request_validation_exception_handler(
+#     request: Request,
+#     exc: RequestValidationError
+# ):
+#     return JSONResponse(
+#         status_code=422,
+#         content={
+#             "success": False,
+#             "message": "Dados de entrada inválidos"
+#         }
+#     )
+
+
 async def business_exception_handler(
     request: Request,
     exc: BusinessException
@@ -49,17 +62,6 @@ async def validation_exception_handler(
         }
     )
 
-async def request_validation_exception_handler(
-    request: Request,
-    exc: RequestValidationError
-):
-    return JSONResponse(
-        status_code=422,
-        content={
-            "success": False,
-            "message": "Dados de entrada inválidos"
-        }
-    )
 
 
 async def generic_exception_handler(

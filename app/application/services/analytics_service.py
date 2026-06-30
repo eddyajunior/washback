@@ -1,6 +1,5 @@
 from datetime import datetime
 
-from sqlalchemy import func
 
 from app.infrastructure.database.models.customer import Customer
 from app.infrastructure.database.models.wash import Wash
@@ -20,8 +19,11 @@ class AnalyticsService:
         self.campaign_repository = campaign_repository
         self.wash_repository = wash_repository
 
-    def get_active_customers(self, start_date: datetime):
+    def get_active_customers_by_startdate(self, start_date: datetime):
         return self.customer_repository.get_active_customers(start_date)
+    
+    def get_active_customers(self):
+        return self.customer_repository.get_active_customers()
     
     def get_kpi_total_washes(self, start_date: datetime):
         return self.wash_repository.get_kpi_total_washes(start_date)
@@ -54,9 +56,6 @@ class AnalyticsService:
             }
             for item in customers
         ]
-
-    def get_active_customers(self):
-        return self.customer_repository.get_active_customers()
 
     def get_kpi_total_revenue(self, start_date: datetime):
         return self.wash_repository.get_kpi_total_revenue(start_date)

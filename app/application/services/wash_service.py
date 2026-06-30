@@ -16,9 +16,6 @@ class WashService:
     def get_washes_by_company_id(self, company_id: int, skip: int = 0, limit: int = 0):
         return self.wash_repository.get_washes_by_company_id(company_id, skip, limit)
     
-    def get_customer_by_custumer_id(self, customer_id, company_id: int):
-        return self.customer_repository.get_by_id(company_id, customer_id)
-    
     def get_customer_by_custumer_id(self, customer_id: int, company_id: int):
         return self.customer_repository.get_by_id(company_id, customer_id)
 
