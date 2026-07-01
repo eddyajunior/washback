@@ -2,34 +2,10 @@ import time
 
 from starlette.middleware.base import BaseHTTPMiddleware
 
-from app.core.logger import logger
+from app.core.structured_log import log_info, log_error
 
 
 class LoggingMiddleware(BaseHTTPMiddleware):
-
-    # async def dispatch(self, request, call_next):
-
-    #     start_time = time.time()
-
-    #     logger.info(
-    #         f"REQUEST | {request.method} {request.url.path}"
-    #     )
-
-    #     response = await call_next(request)
-
-    #     process_time = round(
-    #         (time.time() - start_time) * 1000,
-    #         2
-    #     )
-
-    #     logger.info(
-    #         f"RESPONSE | {request.method} "
-    #         f"{request.url.path} | "
-    #         f"Status={response.status_code} | "
-    #         f"{process_time}ms"
-    #     )
-
-    #     return response
 
     async def dispatch(self, request, call_next):
 
@@ -42,12 +18,11 @@ class LoggingMiddleware(BaseHTTPMiddleware):
         start_time = time.time()
 
         try:
-
-            logger.info(
-                f"REQUEST_ID={request_id} | "
-                f"REQUEST | "
-                f"{request.method} "
-                f"{request.url.path}"
+            log_info(
+                "http_request",
+                request_id=request_id,
+                method=request.method,
+                path=request.url.path
             )
 
             response = await call_next(request)
@@ -57,13 +32,20 @@ class LoggingMiddleware(BaseHTTPMiddleware):
                 2
             )
 
-            logger.info(
-                f"REQUEST_ID={request_id} | "
-                f"RESPONSE | "
-                f"{request.method} "
-                f"{request.url.path} | "
-                f"Status={response.status_code} | "
-                f"{process_time}ms"
+            log_info(
+                "http_response",
+                request_id=request_id,
+                method=request.method,
+                path=request.url.path,
+                status_code=response.status_code,
+                duration_ms=process_time
+            )
+
+            log_info(
+                "http_request",
+                request_id=request_id,
+                method=request.method,
+                path=request.url.path
             )
 
             return response
@@ -75,11 +57,13 @@ class LoggingMiddleware(BaseHTTPMiddleware):
                 2
             )
 
-            logger.error(
-                f"ERROR | {request.method} "
-                f"{request.url.path} | "
-                f"{process_time}ms | "
-                f"{str(e)}"
+            log_error(
+                "http_error",
+                request_id=request_id,
+                method=request.method,
+                path=request.url.path,
+                duration_ms=process_time,
+                error=str(e)
             )
 
             raise
