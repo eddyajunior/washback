@@ -191,7 +191,7 @@ class AnalyticsService:
                 "customer_id": customer.id,
                 "customer_name": customer.name,
                 "status": "insufficient_data",
-                "message": "Poucas lavagens para análise"
+                "message": "Poucas lavagens para análise."
             }
 
         intervals = []

@@ -46,7 +46,7 @@ def create_customer(
     )
 
     return success_response(
-        "Cliente criado com sucesso",
+        "Cliente criado com sucesso.",
         CustomerResponse
             .model_validate(customer_created)
             .model_dump()
@@ -103,7 +103,7 @@ def get_customer(
         )
     
     return success_response(
-        "Cliente encontrado com sucesso",
+        "Cliente encontrado com sucesso.",
         CustomerResponse
             .model_validate(customer)
             .model_dump()

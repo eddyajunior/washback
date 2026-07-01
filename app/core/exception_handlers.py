@@ -19,7 +19,7 @@ async def request_validation_exception_handler(
         status_code=422,
         content={
             "success": False,
-            "message": "Dados de entrada inválidos",
+            "message": "Dados de entrada inválidos.",
             "errors": exc.errors()
         }
     )
@@ -77,6 +77,6 @@ async def generic_exception_handler(
         status_code=500,
         content={
             "success": False,
-            "message": "Erro interno do servidor"
+            "message": "Erro interno do servidor."
         }
     )

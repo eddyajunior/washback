@@ -49,7 +49,7 @@ def test_register_success(client):
     body = response.json()
 
     assert body["success"] is True
-    assert body["message"] == "Usuário criado com sucesso"
+    assert body["message"] == "Usuário criado com sucesso."
     assert body["data"] is None
 
 def test_register_success_and_login(client):
@@ -70,7 +70,7 @@ def test_register_success_and_login(client):
     body = response.json()
 
     assert body["success"] is True
-    assert body["message"] == "Usuário criado com sucesso"
+    assert body["message"] == "Usuário criado com sucesso."
     assert body["data"] is None
 
     response_login = client.post(
@@ -138,7 +138,7 @@ def test_login_validation_error(client):
     body = response.json()
 
     assert body["success"] is False
-    assert body["message"] == "Dados de entrada inválidos"
+    assert body["message"] == "Dados de entrada inválidos."
 
 # def test_login_user_not_found(client):
 

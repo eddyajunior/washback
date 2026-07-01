@@ -181,7 +181,7 @@ def test_get_customer_success(client, auth_headers, customer_created):
     body = response.json()
 
     assert body["success"] is True
-    assert body["message"] == "Cliente encontrado com sucesso"
+    assert body["message"] == "Cliente encontrado com sucesso."
 
 def test_get_customer_not_found(client, auth_headers, customer_created):
 
@@ -218,7 +218,7 @@ def test_create_customer_success(client, auth_headers):
     body = response.json()
 
     assert body["success"] is True
-    assert body["message"] == "Cliente criado com sucesso"
+    assert body["message"] == "Cliente criado com sucesso."
 
 def test_create_car_plate_exists(client, auth_headers, customer_created):
 

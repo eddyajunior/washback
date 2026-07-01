@@ -37,7 +37,7 @@ class AIService:
                     "customer_id": customer.id,
                     "customer_name": customer.name,
                     "status": "insufficient_data",
-                    "message": "Poucas lavagens para análise"
+                    "message": "Poucas lavagens para análise."
                 })
 
             intervals = []
@@ -55,7 +55,7 @@ class AIService:
                     "customer_id": customer.id,
                     "customer_name": customer.name,
                     "status": "insufficient_data",
-                    "message": "Poucas lavagens para análise"
+                    "message": "Poucas lavagens para análise."
                 })
 
                 continue
@@ -110,7 +110,7 @@ class AIService:
                     "status": "insufficient_data",
                     "campaign": {
                         "title": "Sem dados suficientes",
-                        "message": "Continue utilizando o sistema",
+                        "message": "Continue utilizando o sistema.",
                         "coupon": None
                     }
                 })
@@ -159,7 +159,7 @@ class AIService:
                 "status": "insufficient_data",
                 "campaign": {
                     "title": "Sem dados suficientes",
-                    "message": "Continue utilizando o sistema",
+                    "message": "Continue utilizando o sistema.",
                     "coupon": None
                 }
             }
@@ -172,7 +172,7 @@ class AIService:
                     "status": status,
                     "campaign": {
                         "title": "Sentimos sua falta",
-                        "message": f"{customer_name}, volte essa semana e ganhe 10% OFF",
+                        "message": f"{customer_name}, volte essa semana e ganhe 10% OFF.",
                         "coupon": "VOLTA10"
                     }
                 }
@@ -182,7 +182,7 @@ class AIService:
                     "status": status,
                     "campaign": {
                         "title": "Não perca seu benefício",
-                        "message": f"{customer_name}, faça sua próxima lavagem e ganhe um upgrade grátis",
+                        "message": f"{customer_name}, faça sua próxima lavagem e ganhe um upgrade grátis.",
                         "coupon": "UPGRADE"
                     }
                 }
@@ -192,7 +192,7 @@ class AIService:
                     "status": status,
                     "campaign": {
                         "title": "Cliente VIP",
-                        "message": f"{customer_name}, você ganhou uma lavagem premium",
+                        "message": f"{customer_name}, você ganhou uma lavagem premium.",
                         "coupon": "VIP20"
                     }
                 }
