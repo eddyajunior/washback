@@ -283,3 +283,18 @@ alembic downgrade -1
 - [ ] Migração para PostgreSQL
 - [ ] Deploy em cloud
 - [ ] Observabilidade avançada (metrics/tracing)
+```
+
+## Observabilidade
+
+O projeto possui recursos básicos de observabilidade sem dependência de infraestrutura externa:
+
+- Logs estruturados em JSON
+- Request ID por requisição
+- Healthcheck com validação de banco
+- Métricas em memória
+- Testes automatizados para health e metrics
+
+### Healthcheck
+
+GET /health/
