@@ -4,6 +4,7 @@ from fastapi.exceptions import RequestValidationError
 from app.routers.customer import router as customer_router
 from app.routers.auth import router as auth_router
 from app.routers.health import router as health_router
+from app.routers.metric import router as metric_router
 from app.routers.wash import router as wash_router
 from app.routers.dashboard import router as dashboard_router
 from app.routers.ai import router as ai_router
@@ -60,6 +61,7 @@ def startup_event():
 app.include_router(customer_router)
 app.include_router(auth_router)
 app.include_router(health_router)
+app.include_router(metric_router)
 app.include_router(wash_router)
 app.include_router(dashboard_router)
 app.include_router(ai_router)
