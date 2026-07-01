@@ -1,4 +1,4 @@
-from app.core.exceptions import BusinessException, ValidationException
+from app.core.exceptions import BusinessException
 from app.core.logger import logger
 
 from app.infrastructure.repositories.customer_repository import CustomerRepository

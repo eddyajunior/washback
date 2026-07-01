@@ -1,13 +1,5 @@
 from fastapi import FastAPI
-
-from app.infrastructure.database.database import engine, Base
-
-# from app.infrastructure.database.models import *
-from app.infrastructure.database.models.user import User as User
-from app.infrastructure.database.models.company import Company as Company
-from app.infrastructure.database.models.customer import Customer as Customer
-from app.infrastructure.database.models.wash import Wash as Wash
-from app.infrastructure.database.models.campaign import Campaign as Campaign
+from fastapi.exceptions import RequestValidationError
 
 from app.routers.customer import router as customer_router
 from app.routers.auth import router as auth_router
@@ -16,8 +8,6 @@ from app.routers.wash import router as wash_router
 from app.routers.dashboard import router as dashboard_router
 from app.routers.ai import router as ai_router
 from app.routers.analytics import router as analytics_router
-
-from fastapi.exceptions import RequestValidationError
 
 from app.core.middlewares.logging_middleware import LoggingMiddleware
 from app.core.middlewares.request_id_middleware import RequestIdMiddleware
@@ -35,8 +25,6 @@ from app.core.exceptions import (
     BusinessException,
     ValidationException
 )
-
-Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="Lav.AI Rápido"
@@ -76,17 +64,6 @@ app.include_router(wash_router)
 app.include_router(dashboard_router)
 app.include_router(ai_router)
 app.include_router(analytics_router)
-
-# app.add_exception_handler(
-#     RequestValidationError,
-#     validation_exception_handler
-# )
-
-app.add_exception_handler(
-    Exception,
-    generic_exception_handler
-)
-
 
 @app.get("/")
 def home():

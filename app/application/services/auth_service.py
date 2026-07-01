@@ -26,7 +26,7 @@ class AuthService:
         existing_user = self.validate_user(user.email)
 
         if existing_user:
-            raise ValidationException(
+            raise BusinessException(
                 "Email já cadastrado",
                 409
             )
@@ -49,7 +49,7 @@ class AuthService:
 
         if added_user.id < 1:
             raise BusinessException(
-                "Erro ao criar usuário",
+                "Erro ao criar usuário.",
                 500
             )
             
@@ -60,7 +60,7 @@ class AuthService:
 
         if not db_user:
             raise ValidationException(
-                "Credenciais inválidas"
+                "Credenciais inválidas."
             )
 
         valid_password = verify_password(
@@ -70,7 +70,7 @@ class AuthService:
 
         if not valid_password:
             raise ValidationException(
-                "Credenciais inválidas"
+                "Credenciais inválidas."
             )
 
         token = create_access_token(

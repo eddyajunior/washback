@@ -33,17 +33,6 @@ def test_access_with_empty_token(client):
 
     assert response.status_code == 401
 
-# def test_access_with_invalid_token(client):
-
-#     response = client.get(
-#         "/customers/1",
-#         headers={
-#             "Authorization": "Bearer token_invalido"
-#         }
-#     )
-
-#     assert response.status_code == 401
-
 def test_access_with_invalid_token(client):
 
     response = client.get(
@@ -79,8 +68,6 @@ def test_list_customers_only_from_current_company(
     )
 
     assert response.status_code == 200
-
-    body = response.json()
 
 def test_customer_isolation_between_companies(
     client,

@@ -70,14 +70,6 @@ def test_register_success_and_login(client):
     assert body["success"] is True
     assert body["message"] == "Usuário criado com sucesso."
 
-    response_login = client.post(
-        "/auth/login",
-        json={
-            "email": email,
-            "password": senha
-        }
-    )
-
 def test_login_invalid_password(client, unique_email):
 
     password = "123456"
