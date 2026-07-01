@@ -17,8 +17,9 @@ class CustomerService:
         existing_customer = self.repository.get_by_car_plate(data.company_id, data.car_plate)
 
         if existing_customer:
-            raise ValidationException(
-                "Já existe um cliente com essa placa."
+            raise BusinessException(
+                "Já existe um cliente com essa placa.",
+                409
             )
         
         customer = Customer(

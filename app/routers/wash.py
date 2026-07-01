@@ -35,12 +35,12 @@ def create_wash(
 
     if not wash:
         raise BusinessException(
-            "Erro ao criar lavagem",
+            "Erro ao criar lavagem.",
             500
         )
     
     return success_response(
-        "Lavagem criada com sucesso",
+        "Lavagem criada com sucesso.",
         WashResponse.model_validate(
             wash
         ).model_dump(),
@@ -71,7 +71,7 @@ def list_washes(
     total = service.get_total_washes_by_company_id(current_user["company_id"])
 
     return paginated_response(
-        "Lavagens listadas com sucesso",
+        "Lavagens listadas com sucesso.",
         wash_list,
         page,
         limit,
@@ -91,12 +91,12 @@ def get_wash(
 
     if not wash:
         raise BusinessException(
-            "Lavagem não encontrada",
+            "Lavagem não encontrada.",
             404
         )
     
     return success_response(
-        "Lavagem encontrada",
+        "Lavagem encontrada.",
         WashResponse.model_validate(
             wash
         ).model_dump()

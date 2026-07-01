@@ -27,7 +27,8 @@ class AuthService:
 
         if existing_user:
             raise ValidationException(
-                "Email já cadastrado"
+                "Email já cadastrado",
+                409
             )
 
         company = Company(

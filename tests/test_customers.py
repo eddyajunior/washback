@@ -237,7 +237,7 @@ def test_create_car_plate_exists(client, auth_headers, customer_created):
         headers=auth_headers
         )
     
-    assert response.status_code == 422
+    assert response.status_code == 409
 
     body = response.json()
 

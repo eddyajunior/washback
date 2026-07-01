@@ -18,7 +18,7 @@ def recurring_customers(
     analysis = service.recurring_customers()
 
     return success_response(
-        "Análise de recorrência gerada",
+        "Análise de recorrência gerada.",
         analysis
     )
 

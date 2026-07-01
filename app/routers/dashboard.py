@@ -29,7 +29,7 @@ def get_metrics(
         data = service.get_metrics(current_user["company_id"])
 
         return success_response(
-            "Métricas carregadas com sucesso",
+            "Métricas carregadas com sucesso.",
              data
         )
 

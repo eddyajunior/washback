@@ -24,7 +24,7 @@ def get_kpis(
     data = service.get_kpis()  
 
     return success_response(
-        "KPIs calculados",
+        "KPIs calculados.",
         data
     )
 
@@ -36,7 +36,7 @@ def top_wash_types(
     data = service.get_top_wash_types()
 
     return success_response(
-        "Tipos de lavagem mais populares",
+        "Tipos de lavagem mais populares.",
         data
     )
 
@@ -48,7 +48,7 @@ def revenue_by_month(
     data = service.get_revenue_by_month()
 
     return success_response(
-        "Faturamento por mês",
+        "Faturamento por mês.",
         data
     )
 
