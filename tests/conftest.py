@@ -111,26 +111,6 @@ def customer_created(
 
     return response.json()["data"]
 
-# @pytest.fixture
-# def client():
-#     return TestClient(app)
-
-# @pytest.fixture
-# def auth_headers(client):
-
-
-#     login_response = client.post(
-#         "/auth/login",
-#         json={
-#         	"email": "edson@empresa1.com",
-#     	"password": "1234"
-#         }
-#     )
-
-#     token = login_response.json().get("access_token")
-
-#     return {"Authorization": f"Bearer {token}"}
-
 @pytest.fixture
 def client():
     return TestClient(app)
