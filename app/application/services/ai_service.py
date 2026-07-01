@@ -1,3 +1,7 @@
+# Ação recomendada agora: não refatorar ainda. 
+# Apenas marcar como ponto de atenção. 
+# Se algum método passar de 30–40 linhas ou misturar muitas responsabilidades.
+
 from datetime import datetime
 
 from app.infrastructure.database.models.campaign import Campaign

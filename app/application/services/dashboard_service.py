@@ -1,3 +1,7 @@
+# Ação recomendada agora: não refatorar ainda. 
+# Apenas marcar como ponto de atenção. 
+# Se algum método passar de 30–40 linhas ou misturar muitas responsabilidades.
+
 from app.infrastructure.repositories.campaign_repository import CampaignRepository
 from app.infrastructure.repositories.customer_repository import CustomerRepository
 from app.infrastructure.repositories.wash_repository import WashRepository
