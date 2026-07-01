@@ -33,8 +33,6 @@ WASH_TYPES = [
 def create_customers(total=50):
     customers_created = []
 
-    print("Criando clientes...")
-
     for _ in range(total):
 
         customer = Customer(
@@ -58,8 +56,6 @@ def create_customers(total=50):
 
 
 def create_washes(customers):
-    print("Criando lavagens...")
-
     wash_type= [
         "Lavagem Simples",
         "Lavagem Completa",
@@ -87,10 +83,6 @@ def create_washes(customers):
 
 
 def create_campaigns(customers, db):
-    print("Criando campanhas...")
-
-    # campaigns = []
-
     for customer in customers:
         last_wash_days = random.randint(5, 40)
 
@@ -109,22 +101,12 @@ def create_campaigns(customers, db):
         db.add(campaign)
 
     db.commit()
-    print("Campanhas criadas com sucesso")
 
 if __name__ == "__main__":
 
-    print("Criando clientes...")
-
     customers = create_customers()
 
-    print("Criando lavagens...")
-
     create_washes(customers)
-
-    print("Seed finalizado com sucesso!")
-
-    print("Criando campanhas...")
-
     create_campaigns(customers, db)
 
     

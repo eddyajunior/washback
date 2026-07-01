@@ -53,9 +53,6 @@ def wash_created(
         headers=auth_headers
     )
 
-    print("WASH CREATED STATUS:", response.status_code)
-    print("WASH CREATED BODY:", response.json())
-
     assert response.status_code == 200
 
     return response.json()["data"]
@@ -109,9 +106,6 @@ def customer_created(
         json=payload,
         headers=auth_headers
     )
-
-    print("CUSTOMER CREATED STATUS:", response.status_code)
-    print("CUSTOMER CREATED BODY:", response.json())
 
     assert response.status_code == 200
 

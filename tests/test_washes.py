@@ -12,8 +12,6 @@ def test_list_washes_empty_page(
         headers=auth_headers
     )
 
-    print(response.json())
-
     assert response.status_code == 200
 
 def test_create_wash_without_token(
@@ -47,9 +45,6 @@ def test_create_wash_customer_not_found(
         }
     )
 
-    print(response.status_code)
-    print(response.json())
-
     assert response.status_code == 404
 
 def test_create_wash_validation_error(
@@ -62,9 +57,6 @@ def test_create_wash_validation_error(
         headers=auth_headers,
         json={}
     )
-
-    print(response.status_code)
-    print(response.json())
 
     assert response.status_code == 422
 
@@ -82,9 +74,6 @@ def test_get_list_washes(
         headers = auth_headers
     )
 
-    print(response.status_code)
-    print(response.json())
-
     assert response.status_code == 200
 
 def test_get_wash_by_id_not_found(
@@ -95,8 +84,6 @@ def test_get_wash_by_id_not_found(
     
     wash_id = wash_created["id"] + 10000
 
-    print(wash_id)
-    
     response = client.get(
         f"/washes/{wash_id}",
         headers = auth_headers
@@ -171,9 +158,6 @@ def test_create_wash_success(
             "notes": "" 
         }
     )
-
-    print(response.status_code)
-    print(response.json())
 
     assert response.status_code == 200
 

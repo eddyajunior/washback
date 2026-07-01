@@ -9,9 +9,6 @@ def test_access_with_corrupted_token(client):
         }
     )
 
-    print(response.status_code)
-    print(response.json())
-
     assert response.status_code == 401
     
 def test_access_with_malformed_authorization_header(client):
@@ -22,9 +19,6 @@ def test_access_with_malformed_authorization_header(client):
             "Authorization": "Token abc123"
         }
     )
-
-    print(response.status_code)
-    print(response.json())
 
     assert response.status_code == 401
 
@@ -37,9 +31,6 @@ def test_access_with_empty_token(client):
         }
     )
 
-    print(response.status_code)
-    print(response.json())
-
     assert response.status_code == 401
 
 # def test_access_with_invalid_token(client):
@@ -50,9 +41,6 @@ def test_access_with_empty_token(client):
 #             "Authorization": "Bearer token_invalido"
 #         }
 #     )
-
-#     print(response.status_code)
-#     print(response.json())
 
 #     assert response.status_code == 401
 
@@ -65,9 +53,6 @@ def test_access_with_invalid_token(client):
         }
     )
 
-    print(response.status_code)
-    print(response.json())
-
     assert response.status_code == 401
 
 def test_access_without_token(client):
@@ -75,9 +60,6 @@ def test_access_without_token(client):
     response = client.get(
         "customers/1"
     )
-
-    print(response.status_code)
-    print(response.json())
 
     assert response.status_code == 401
 
@@ -100,8 +82,6 @@ def test_list_customers_only_from_current_company(
 
     body = response.json()
 
-    print(body)
-
 def test_customer_isolation_between_companies(
     client,
     auth_headers_company2
@@ -111,9 +91,6 @@ def test_customer_isolation_between_companies(
         "/customers/1",
         headers=auth_headers_company2
     )
-
-    print(response.status_code)
-    print(response.json())
 
     assert response.status_code in [403, 404]
 
@@ -141,9 +118,6 @@ def test_list_customers_paginated(client, auth_headers, customer_created):
         headers=auth_headers
         )
     
-    print(response.status_code)
-    print(response.json())
-
     assert response.status_code == 200
 
     body = response.json()
@@ -317,8 +291,6 @@ def test_update_customer_not_found(client, auth_headers, customer_created):
         json=payload, 
         headers=auth_headers
     )
-
-    print(response.json())
 
     assert response.status_code == 404
 

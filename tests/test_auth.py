@@ -7,9 +7,6 @@ def test_register_validation_error(client):
         json={}
     )
 
-    print(response.status_code)
-    print(response.json())
-
     assert response.status_code == 422
 
     body = response.json()
@@ -29,9 +26,6 @@ def test_register_duplicate_email(client, unique_email):
         }
     )
 
-    print(response.status_code)
-    print(response.json())
-
     assert response.status_code == 200
 
     body = response.json()
@@ -49,9 +43,6 @@ def test_register_success(client):
             "password": "1234"
         }
     )
-
-    print(response.status_code)
-    print(response.json())
 
     assert response.status_code in [200, 201]
 
@@ -74,9 +65,6 @@ def test_register_success_and_login(client):
         }
     )
 
-    print(response.status_code)
-    print(response.json())
-
     assert response.status_code in [200, 201]
 
     body = response.json()
@@ -85,8 +73,6 @@ def test_register_success_and_login(client):
     assert body["message"] == "Usuário criado com sucesso"
     assert body["data"] is None
 
-    print(email)
-
     response_login = client.post(
         "/auth/login",
         json={
@@ -94,8 +80,6 @@ def test_register_success_and_login(client):
             "password": senha
         }
     )
-
-    print(response_login.json())
 
 def test_login_invalid_password(client, unique_email):
 
@@ -108,9 +92,6 @@ def test_login_invalid_password(client, unique_email):
             "password": password
         }        
     )
-
-    print(response.status_code)
-    print(response.json())
 
     assert response.status_code == 422
 
@@ -139,9 +120,6 @@ def test_login_invalid_credentials(client):
             "password": "senha_errada"
         }
     )
-
-    print(response.status_code)
-    print(response.json())
 
     assert response.status_code == 422
 
@@ -183,9 +161,6 @@ def test_login_user_not_found(client):
             "password": "123456"
         }        
     )
-
-    print(response.status_code)
-    print(response.json())
 
     assert response.status_code == 422
 
