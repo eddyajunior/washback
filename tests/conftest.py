@@ -53,7 +53,7 @@ def wash_created(
         headers=auth_headers
     )
 
-    assert response.status_code == 200
+    assert response.status_code == 201
 
     return response.json()["data"]
 
@@ -107,7 +107,7 @@ def customer_created(
         headers=auth_headers
     )
 
-    assert response.status_code == 200
+    assert response.status_code == 201
 
     return response.json()["data"]
 

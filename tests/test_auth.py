@@ -22,11 +22,10 @@ def test_register_duplicate_email(client, unique_email):
         json={
             "email": unique_email,
             "password": password
-            # ,"company_name": "Empresa Teste"
         }
     )
 
-    assert response.status_code == 200
+    assert response.status_code == 201
 
     body = response.json()
 
@@ -44,13 +43,12 @@ def test_register_success(client):
         }
     )
 
-    assert response.status_code in [200, 201]
+    assert response.status_code == 201
 
     body = response.json()
 
     assert body["success"] is True
     assert body["message"] == "Usuário criado com sucesso."
-    assert body["data"] is None
 
 def test_register_success_and_login(client):
 
@@ -71,7 +69,6 @@ def test_register_success_and_login(client):
 
     assert body["success"] is True
     assert body["message"] == "Usuário criado com sucesso."
-    assert body["data"] is None
 
     response_login = client.post(
         "/auth/login",

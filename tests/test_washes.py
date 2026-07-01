@@ -106,7 +106,7 @@ def test_company_cannot_access_other_company_wash(
         }
     )
 
-    assert register_response.status_code == 200
+    assert register_response.status_code == 201
 
     login_response = client.post(
         "/auth/login",
@@ -159,7 +159,7 @@ def test_create_wash_success(
         }
     )
 
-    assert response.status_code == 200
+    assert response.status_code == 201
 
     body = response.json()
 

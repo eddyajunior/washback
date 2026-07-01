@@ -49,7 +49,8 @@ def create_customer(
         "Cliente criado com sucesso.",
         CustomerResponse
             .model_validate(customer_created)
-            .model_dump()
+            .model_dump(),
+        status_code=201
     )
 
 @router.get("/", response_model=DefaultResponse)

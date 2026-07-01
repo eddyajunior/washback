@@ -43,7 +43,8 @@ def create_wash(
         "Lavagem criada com sucesso",
         WashResponse.model_validate(
             wash
-        ).model_dump()
+        ).model_dump(),
+        status_code=201
     )
 
 @router.get(

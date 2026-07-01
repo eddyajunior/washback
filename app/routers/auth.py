@@ -24,7 +24,8 @@ def register(
     service.register_user(user)
 
     return success_response(
-        "Usuário criado com sucesso."
+        "Usuário criado com sucesso.",
+        status_code=201
     )
 
 @router.post("/login", response_model=Token)

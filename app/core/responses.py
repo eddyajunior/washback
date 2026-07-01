@@ -1,12 +1,24 @@
+from fastapi.encoders import jsonable_encoder
+from fastapi.responses import JSONResponse
+
 def success_response(
     message: str,
-    data=None
+    data=None,
+    status_code: int = 200    
 ):
-    return {
+    
+    content = {
         "success": True,
         "message": message,
-        "data": data
     }
+
+    if data is not None:
+        content["data"] = data
+
+    return JSONResponse(
+        status_code=status_code,
+        content=jsonable_encoder(content)
+    )
 
 
 def error_response(

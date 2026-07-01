@@ -213,7 +213,7 @@ def test_create_customer_success(client, auth_headers):
         headers=auth_headers
         )
     
-    assert response.status_code == 200
+    assert response.status_code == 201
 
     body = response.json()
 
